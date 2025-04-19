@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ecobuddy</string>
     <string name="google_fit_client_id">107221910326-2o9nf55jj1ivk18mti6fmndfm00fq7do.apps.googleusercontent.com</string>
+     <string name="username1">username1</string>
 </resources>
