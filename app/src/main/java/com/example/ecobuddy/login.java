@@ -11,6 +11,7 @@ import com.example.ecobuddy.signUp;
 import com.google.firebase.auth.FirebaseAuth;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class login extends AppCompatActivity {
 
     EditText emailInput, passwordInput;
@@ -42,7 +43,7 @@ public class login extends AppCompatActivity {
             auth.signInWithEmailAndPassword(email, password)
                     .addOnSuccessListener(authResult -> {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(login.this, homepage.class)); // Navigate to home
+                        startActivity(new Intent(login.this, Homepage.class)); // Navigate to home
                         finish();
                     })
                     .addOnFailureListener(e -> {

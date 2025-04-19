@@ -23,7 +23,7 @@
         android:id="@+id/textFootprintValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.0"
+        android:text="0 steps"
         android:textStyle="bold"
         android:textSize="48sp"
         android:textColor="#FFFFFF"
@@ -35,7 +35,7 @@
         android:id="@+id/textUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ton CO2/year"
+        android:text="steps"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
         android:layout_marginStart="8dp"
@@ -51,72 +51,124 @@
         app:layout_constraintTop_toBottomOf="@id/textFootprintValue"
         app:layout_constraintStart_toStartOf="@id/textFootprintValue">
 
-        <ImageView
-            android:id="@+id/graphArrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_graph_up" />
-
         <TextView
             android:id="@+id/textChangePercentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+0% since last month"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp" />
+            android:textSize="14sp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0 km"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/changeLayout"
+        app:layout_constraintStart_toStartOf="@id/textFootprintValue" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/changeLayout" />
+        app:layout_constraintTop_toBottomOf="@id/textDistance" />
 
     <LinearLayout
         android:id="@+id/monthsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/graphImage"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/lineChart">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jan" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Feb" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mar" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apr" android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Jan"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Feb"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Mar"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apr"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/plantIllustration"
-        android:layout_height="300dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="410dp"
+        android:layout_height="192dp"
         android:scaleType="fitCenter"
         android:src="@drawable/women"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monthsLayout" />
 
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#2E2E2E"
-        android:orientation="horizontal"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plantIllustration"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp">
 
-        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/home_icon" />
-        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/trophy" />
-        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/reward" />
-        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/chart" />
-        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/logout" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/home_icon" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/trophy" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/goal" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/chart" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/logout" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

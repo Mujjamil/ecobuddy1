@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id ("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -39,8 +38,20 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation (platform("com.google.firebase:firebase-bom:33.12.0"))
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Explicit version for consistency
+    implementation platform("com.google.firebase:firebase-bom:33.12.0")
 
-    implementation ("com.google.firebase:firebase-analytics")
+    implementation "com.google.firebase:firebase-analytics"
+    implementation "com.google.android.gms:play-services-auth:21.0.0"
+
+    implementation "com.google.android.gms:play-services-fitness:21.0.1" // Use only the latest version
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
+
+
+    // Optional: Add this to resolve version conflicts if needed
+    configurations.all {
+        resolutionStrategy {
+            force "com.google.android.gms:play-services-fitness:21.0.1"
+        }
+    }
 }

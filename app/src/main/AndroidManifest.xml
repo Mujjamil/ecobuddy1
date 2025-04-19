@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+
+
 
     <application
         android:allowBackup="true"
@@ -27,6 +31,7 @@
 
         </activity>
         <activity android:name=".signUp"></activity>
+        <activity android:name=".Homepage"></activity>
 
     </application>
 
