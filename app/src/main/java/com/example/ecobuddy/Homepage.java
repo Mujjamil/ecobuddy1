@@ -111,7 +111,6 @@ public class Homepage extends AppCompatActivity {
             );
         } else {
             subscribeToStepCount();
-            subscribeToDistance();
         }
     }
 
@@ -120,8 +119,11 @@ public class Homepage extends AppCompatActivity {
             for (Field field : dataPoint.getDataType().getFields()) {
                 int step = dataPoint.getValue(field).asInt();
                 totalSteps += step;
+                float distanceKm = totalSteps * 0.002f; // 500 steps = 1 km
                 runOnUiThread(() -> {
                     textSteps.setText(totalSteps + " steps");
+                    textDistance.setText(String.format("%.2f km", distanceKm));
+                    updateChart(distanceKm);
                 });
             }
         };
@@ -138,29 +140,7 @@ public class Homepage extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("GoogleFit", "Failed to register step listener", e));
     }
 
-    private void subscribeToDistance() {
-        distanceListener = dataPoint -> {
-            for (Field field : dataPoint.getDataType().getFields()) {
-                float distance = dataPoint.getValue(field).asFloat();
-                totalDistance += distance / 1000f; // Convert to KM
-                runOnUiThread(() -> {
-                    textDistance.setText(String.format("%.2f km", totalDistance));
-                    updateChart(totalDistance);
-                });
-            }
-        };
 
-        Fitness.getSensorsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .add(
-                        new SensorRequest.Builder()
-                                .setDataType(DataType.TYPE_DISTANCE_DELTA)
-                                .setSamplingRate(5, TimeUnit.SECONDS)
-                                .build(),
-                        distanceListener
-                )
-                .addOnSuccessListener(unused -> Log.i("GoogleFit", "Distance listener registered"))
-                .addOnFailureListener(e -> Log.e("GoogleFit", "Failed to register distance listener", e));
-    }
 
     private void updateChart(float distance) {
         LineData data = lineChart.getData();
@@ -189,7 +169,7 @@ public class Homepage extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE && resultCode == RESULT_OK) {
             subscribeToStepCount();
-            subscribeToDistance();
+
         }
     }
 
