@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, login.class);
             startActivity(intent);
             finish(); // so user can't come back to splash
-        }, 3000); // 3000ms = 3 seconds
+        }, 2000); // 3000ms = 3 seconds
     }
 }

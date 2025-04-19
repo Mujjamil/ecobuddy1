@@ -32,6 +32,7 @@
         </activity>
         <activity android:name=".signUp"></activity>
         <activity android:name=".Homepage"></activity>
+        <activity android:name=".emission"></activity>
 
     </application>
 

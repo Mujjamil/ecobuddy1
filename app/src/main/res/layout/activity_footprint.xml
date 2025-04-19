@@ -75,59 +75,23 @@
         android:id="@+id/lineChart"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textDistance" />
 
-    <LinearLayout
-        android:id="@+id/monthsLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineChart">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Jan"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Feb"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Mar"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Apr"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
     <ImageView
         android:id="@+id/plantIllustration"
-        android:layout_width="410dp"
-        android:layout_height="192dp"
+        android:layout_width="411dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="12dp"
         android:scaleType="fitCenter"
         android:src="@drawable/women"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monthsLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
     <LinearLayout
         android:id="@+id/bottomNav"
@@ -142,30 +106,35 @@
         tools:layout_editor_absoluteX="0dp">
 
         <ImageView
+            android:id="@+id/home"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/home_icon" />
 
         <ImageView
-            android:layout_width="32dp"
+            android:id="@+id/reward"
+            android:layout_width="31dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/trophy" />
 
         <ImageView
+            android:id="@+id/goal"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/goal" />
 
         <ImageView
+            android:id="@+id/Chart"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/chart" />
 
         <ImageView
+            android:id="@+id/logout"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"

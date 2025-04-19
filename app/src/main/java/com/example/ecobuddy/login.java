@@ -45,7 +45,7 @@ public class login extends AppCompatActivity {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(login.this, Homepage.class)); // Navigate to home
                         finish();
-                    })
+                    }) 
                     .addOnFailureListener(e -> {
                         Toast.makeText(this, "Login failedddd: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });

@@ -3,12 +3,16 @@ package com.example.ecobuddy;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Color;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -21,45 +25,81 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessOptions;
-import com.google.android.gms.fitness.data.Bucket;
-import com.google.android.gms.fitness.data.DataPoint;
-import com.google.android.gms.fitness.data.DataSet;
 import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.Field;
-import com.google.android.gms.fitness.request.DataReadRequest;
+import com.google.android.gms.fitness.request.OnDataPointListener;
+import com.google.android.gms.fitness.request.SensorRequest;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.TimeUnit;
 
-public class Homepage extends AppCompatActivity {
 
-    private TextView textDistance, textSteps;
-    private LineChart lineChart;
-    private FitnessOptions fitnessOptions;
+
+
+public class Homepage extends AppCompatActivity {
 
     private static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1001;
     private static final int ACTIVITY_RECOGNITION_REQUEST_CODE = 101;
+
+    private TextView textSteps, textDistance;
+    private LineChart lineChart;
+
+    private FitnessOptions fitnessOptions;
+    private OnDataPointListener stepListener;
+    private OnDataPointListener distanceListener;
+    private ImageView emission,myGoal,logOut;
+
+    private int totalSteps = 0;
+    private float totalDistance = 0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footprint);
 
-        textDistance = findViewById(R.id.textDistance);
+        findViewById(R.id.logout).setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent logoutIntent = new Intent(this, login.class);
+            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(logoutIntent);
+            finish();
+        });
+
+
+
         textSteps = findViewById(R.id.textFootprintValue);
+        textDistance = findViewById(R.id.textDistance);
         lineChart = findViewById(R.id.lineChart);
 
+
+        findViewById(R.id.logout).setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent logoutIntent = new Intent(this, login.class);
+            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(logoutIntent);
+            finish();
+        });
+        findViewById(R.id.reward).setOnClickListener(v -> {
+            startActivity(new Intent(this, com.example.ecobuddy.emission.class));
+        });
+
+
+
+        // Permission for activity recognition
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACTIVITY_RECOGNITION},
-                    ACTIVITY_RECOGNITION_REQUEST_CODE
-            );
+                    ACTIVITY_RECOGNITION_REQUEST_CODE);
         }
 
+        // Google Fit Permissions
         fitnessOptions = FitnessOptions.builder()
                 .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
                 .addDataType(DataType.TYPE_DISTANCE_DELTA, FitnessOptions.ACCESS_READ)
+                .addDataType(DataType.TYPE_STEP_COUNT_CUMULATIVE, FitnessOptions.ACCESS_READ)
                 .build();
 
         if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
@@ -70,52 +110,59 @@ public class Homepage extends AppCompatActivity {
                     fitnessOptions
             );
         } else {
-            readFitnessData();
+            subscribeToStepCount();
+            subscribeToDistance();
         }
     }
 
-    private void readFitnessData() {
-        long endTime = System.currentTimeMillis();
-        long startTime = endTime - TimeUnit.DAYS.toMillis(30);
+    private void subscribeToStepCount() {
+        stepListener = dataPoint -> {
+            for (Field field : dataPoint.getDataType().getFields()) {
+                int step = dataPoint.getValue(field).asInt();
+                totalSteps += step;
+                runOnUiThread(() -> {
+                    textSteps.setText(totalSteps + " steps");
+                });
+            }
+        };
 
-        DataReadRequest readRequest = new DataReadRequest.Builder()
-                .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
-                .aggregate(DataType.TYPE_DISTANCE_DELTA, DataType.AGGREGATE_DISTANCE_DELTA)
-                .bucketByTime(1, TimeUnit.DAYS)
-                .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
-                .build();
-
-        Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .readData(readRequest)
-                .addOnSuccessListener(response -> {
-                    int totalSteps = 0;
-                    float totalDistance = 0f;
-
-                    for (Bucket bucket : response.getBuckets()) {
-                        for (DataSet dataSet : bucket.getDataSets()) {
-                            for (DataPoint dp : dataSet.getDataPoints()) {
-                                if (dp.getDataType().equals(DataType.AGGREGATE_STEP_COUNT_DELTA)) {
-                                    totalSteps += dp.getValue(Field.FIELD_STEPS).asInt();
-                                } else if (dp.getDataType().equals(DataType.AGGREGATE_DISTANCE_DELTA)) {
-                                    totalDistance += dp.getValue(Field.FIELD_DISTANCE).asFloat();
-                                }
-                            }
-                        }
-                    }
-
-                    final float kmDistance = totalDistance / 1000f;
-
-                    int finalTotalSteps = totalSteps;
-                    runOnUiThread(() -> {
-                        textSteps.setText(String.format("%d steps", finalTotalSteps));
-                        textDistance.setText(String.format("%.2f km", kmDistance));
-                        updateLineChart(kmDistance);
-                    });
-                })
-                .addOnFailureListener(e -> Log.e("Fitness", "Failed to read data", e));
+        Fitness.getSensorsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .add(
+                        new SensorRequest.Builder()
+                                .setDataType(DataType.TYPE_STEP_COUNT_DELTA)
+                                .setSamplingRate(5, TimeUnit.SECONDS)
+                                .build(),
+                        stepListener
+                )
+                .addOnSuccessListener(unused -> Log.i("GoogleFit", "Step listener registered"))
+                .addOnFailureListener(e -> Log.e("GoogleFit", "Failed to register step listener", e));
     }
 
-    private void updateLineChart(float distance) {
+    private void subscribeToDistance() {
+        distanceListener = dataPoint -> {
+            for (Field field : dataPoint.getDataType().getFields()) {
+                float distance = dataPoint.getValue(field).asFloat();
+                totalDistance += distance / 1000f; // Convert to KM
+                runOnUiThread(() -> {
+                    textDistance.setText(String.format("%.2f km", totalDistance));
+                    updateChart(totalDistance);
+                });
+            }
+        };
+
+        Fitness.getSensorsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .add(
+                        new SensorRequest.Builder()
+                                .setDataType(DataType.TYPE_DISTANCE_DELTA)
+                                .setSamplingRate(5, TimeUnit.SECONDS)
+                                .build(),
+                        distanceListener
+                )
+                .addOnSuccessListener(unused -> Log.i("GoogleFit", "Distance listener registered"))
+                .addOnFailureListener(e -> Log.e("GoogleFit", "Failed to register distance listener", e));
+    }
+
+    private void updateChart(float distance) {
         LineData data = lineChart.getData();
         if (data == null) {
             data = new LineData();
@@ -141,9 +188,10 @@ public class Homepage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE && resultCode == RESULT_OK) {
-            readFitnessData();
-        } else {
-            Log.e("Fitness", "Permission denied");
+            subscribeToStepCount();
+            subscribeToDistance();
         }
     }
+
+
 }
