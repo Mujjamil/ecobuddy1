@@ -10,8 +10,7 @@
         android:id="@+id/pieChart"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="20dp" />
 
     <!-- Centered total distance inside chart -->
 
@@ -73,11 +72,6 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Day Navigation -->
-
-    <!-- Travel Information -->
-
-    <!-- Bottom Navigation -->
 
     <LinearLayout
         android:id="@+id/daySelector"
@@ -86,8 +80,8 @@
         android:layout_below="@id/pieChart"
         android:layout_alignParentStart="true"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginStart="-4dp"
-        android:layout_marginTop="119dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="147dp"
         android:background="#FFF"
         android:elevation="8dp"
         android:gravity="center"
