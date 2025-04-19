@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842712316675",
+    "project_id": "eco-buddy-4323a",
+    "storage_bucket": "eco-buddy-4323a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842712316675:android:46cd000bae4b554fce4736",
+        "android_client_info": {
+          "package_name": "com.app.ecobuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEeMmZgkWia1TXyLvoQdmrz2hd9Ipt7iA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

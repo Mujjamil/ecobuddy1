@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_footprint">
+
+    <TextView
+        android:id="@+id/textMyFootprint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Footprint"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textFootprintValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        android:textStyle="bold"
+        android:textSize="48sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textMyFootprint"
+        app:layout_constraintStart_toStartOf="@id/textMyFootprint" />
+
+    <TextView
+        android:id="@+id/textUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ton CO2/year"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/textFootprintValue"
+        app:layout_constraintBaseline_toBaselineOf="@id/textFootprintValue" />
+
+    <LinearLayout
+        android:id="@+id/changeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textFootprintValue"
+        app:layout_constraintStart_toStartOf="@id/textFootprintValue">
+
+        <ImageView
+            android:id="@+id/graphArrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_graph_up" />
+
+        <TextView
+            android:id="@+id/textChangePercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+0% since last month"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changeLayout" />
+
+    <LinearLayout
+        android:id="@+id/monthsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/graphImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jan" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Feb" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mar" android:textColor="#FFFFFF" android:layout_marginEnd="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apr" android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/plantIllustration"
+        android:layout_height="300dp"
+        android:layout_marginBottom="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/women"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#2E2E2E"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/home_icon" />
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/trophy" />
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/reward" />
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/chart" />
+        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_margin="25dp" android:src="@drawable/logout" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
