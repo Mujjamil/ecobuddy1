@@ -18,12 +18,8 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
 
         </activity>
@@ -33,11 +29,17 @@
         </activity>
         <activity android:name=".signUp"></activity>
         <activity android:name=".Homepage"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".emission"></activity>
         <activity android:name=".rewards"></activity>
+        <activity android:name=".pt"></activity>
 
     </application>
 

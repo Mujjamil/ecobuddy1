@@ -6,34 +6,35 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class rewards extends AppCompatActivity {
-    private ImageView home,transport,progress;
+public class pt extends AppCompatActivity {
+    private ImageView home,rewards,progress;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reward);
-
+        setContentView(R.layout.activity_pt);
         home = findViewById(R.id.home);
         progress = findViewById(R.id.progress);
-        transport = findViewById(R.id.publicTransport);
+        rewards = findViewById(R.id.reward);
 
-        home.setOnClickListener(v -> {
-            Intent intent = new Intent(rewards.this, Homepage.class);
+        rewards.setOnClickListener(v -> {
+            Intent intent = new Intent(pt.this, rewards.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
         progress.setOnClickListener(v -> {
-            Intent intent = new Intent(rewards.this, emission.class);
+            Intent intent = new Intent(pt.this, emission.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
-        transport.setOnClickListener(v -> {
-            Intent intent = new Intent(rewards.this, pt.class);
+        home.setOnClickListener(v -> {
+            Intent intent = new Intent(pt.this, Homepage.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
-}
+
+
+    }
 }

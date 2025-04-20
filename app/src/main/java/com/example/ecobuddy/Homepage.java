@@ -1,6 +1,9 @@
 package com.example.ecobuddy;
 
+import static com.example.ecobuddy.R.*;
+
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -45,11 +48,12 @@ public class Homepage extends AppCompatActivity {
     private FitnessOptions fitnessOptions;
     private OnDataPointListener stepListener;
     private OnDataPointListener distanceListener;
-    private ImageView emission,rewards,transoprt;
+    private ImageView rewards,transport,progress;
 
     private int totalSteps = 0;
     private float totalDistance = 0f;
 
+    @SuppressLint("MissingInflatedId")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,25 +67,34 @@ public class Homepage extends AppCompatActivity {
         textSteps = findViewById(R.id.textFootprintValue);
         textDistance = findViewById(R.id.textDistance);
         lineChart = findViewById(R.id.lineChart);
-        rewards = findViewById(R.id.Chart);
+        rewards = findViewById(id.reward);
+        progress = findViewById(id.progress);
+        transport = findViewById(id.publicTransport);
 
 
 
 
-        findViewById(R.id.reward).setOnClickListener(v -> {
+
+
+        findViewById(id.progress).setOnClickListener(v -> {
             Intent intent = new Intent(this, emission.class);
             intent.putExtra("walking_distance", totalDistance);
             intent.putExtra("selected_day", getCurrentDay());
             startActivity(intent);
             Log.d("Homepage", "Sent to emission: walking_distance=" + totalDistance + " km, day=" + getCurrentDay());
         });
-        rewards.setOnClickListener(v -> {
+         rewards.setOnClickListener(v -> {
             Intent intent = new Intent(Homepage.this, com.example.ecobuddy.rewards.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
         });
-
+            transport.setOnClickListener(v -> {
+            Intent intent = new Intent(Homepage.this, pt.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
 
 
         // Permission for activity recognition

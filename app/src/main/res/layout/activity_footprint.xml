@@ -113,25 +113,27 @@
             android:src="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/reward"
+            android:id="@+id/progress"
             android:layout_width="31dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/trophy" />
 
         <ImageView
-            android:id="@+id/goal"
-            android:layout_width="32dp"
-            android:layout_height="26dp"
-            android:layout_margin="25dp"
-            android:src="@drawable/transport" />
-
-        <ImageView
-            android:id="@+id/Chart"
+            android:id="@+id/reward"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
             android:src="@drawable/reward" />
+
+        <ImageView
+            android:id="@+id/publicTransport"
+            android:layout_width="45dp"
+            android:layout_height="34dp"
+            android:layout_margin="25dp"
+            android:src="@drawable/transport" />
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

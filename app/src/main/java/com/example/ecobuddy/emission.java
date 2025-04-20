@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class emission extends AppCompatActivity {
     private TextView dayText, walkingDistanceText, bikeDistanceText, publicTransportDistanceText, totalDistanceText;
     private PieChart pieChart;
+    private ImageView home,rewards,transport;
     private final String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private int currentDayIndex = 0; // default to Monday
 
@@ -40,6 +41,30 @@ public class emission extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart);
         ImageView leftArrow = findViewById(R.id.leftArrow);
         ImageView rightArrow = findViewById(R.id.rightArrow);
+
+
+        home = findViewById(R.id.home);
+        transport = findViewById(R.id.publicTransport);
+        rewards = findViewById(R.id.reward);
+
+        home.setOnClickListener(v -> {
+            Intent intent = new Intent(emission.this, Homepage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+        transport.setOnClickListener(v -> {
+            Intent intent = new Intent(emission.this, pt.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+        rewards.setOnClickListener(v -> {
+            Intent intent = new Intent(emission.this, rewards.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
 
         // Handle incoming Intent data
         Intent intent = getIntent();
