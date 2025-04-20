@@ -3,7 +3,7 @@
 EcoBuddy is an Android application designed to promote eco-friendly habits by visualizing and tracking your daily transportation choices and physical activity — all in one beautiful, interactive interface.
 
 ---
-##Poblem Statment:
+❓Poblem Statment:
 EcoBuddy - Footprint Tracker with Google Maps
 An Android app that gamifies reducing carbon footprints by tracking eco-friendly activities (walking, biking, public transport) via Google Maps API, rewarding points, and displaying progress on a leaderboard to encourage sustainable habits through friendly competition.
 ---
