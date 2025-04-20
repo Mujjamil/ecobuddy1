@@ -203,29 +203,36 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:id="@+id/home"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:layout_margin="25dp"
                 android:src="@drawable/home_icon" />
 
             <ImageView
+                android:id="@+id/progress"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="25dp"
+                android:src="@drawable/trophy" />
+
+            <ImageView
+                android:id="@+id/reward"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="25dp"
                 android:src="@drawable/reward" />
 
             <ImageView
+                android:id="@+id/publicTransport"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="25dp"
                 android:src="@drawable/transport" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="25dp"
-                android:src="@drawable/trophy" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
