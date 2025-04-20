@@ -122,22 +122,16 @@
         <ImageView
             android:id="@+id/goal"
             android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_height="26dp"
             android:layout_margin="25dp"
-            android:src="@drawable/goal" />
+            android:src="@drawable/transport" />
 
         <ImageView
             android:id="@+id/Chart"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
-            android:src="@drawable/chart" />
+            android:src="@drawable/reward" />
 
-        <ImageView
-            android:id="@+id/logout"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_margin="25dp"
-            android:src="@drawable/logout" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

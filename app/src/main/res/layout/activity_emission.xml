@@ -16,62 +16,19 @@
 
     <!-- Legend -->
 
+
     <TextView
         android:id="@+id/totalDistanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="367dp"
-        android:layout_marginEnd="169dp"
+        android:layout_marginTop="335dp"
+        android:layout_marginEnd="193dp"
         android:text="50 km"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/legendLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignTop="@id/pieChart"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="60dp">
-
-        <TextView
-            android:id="@+id/legend1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="21%"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/legend2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="45%"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/legend3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12%"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/legend4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="9%"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-    </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/daySelector"
@@ -256,10 +213,10 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="25dp"
-            android:src="@drawable/chart" />
-        <ImageView android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_margin="25dp" android:src="@drawable/logout" />
+            android:src="@drawable/transport" />
+
+
+
     </LinearLayout>
 
 </RelativeLayout>

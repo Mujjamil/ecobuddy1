@@ -48,7 +48,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_gold_medal"
-                        android:tint="#FFD700"/>
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_silver_medal"
-                        android:tint="#C0C0C0"/>
+                      />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_bronze_medal"
-                        android:tint="#CD7F32"/>
+                       />
 
                     <TextView
                         android:layout_width="wrap_content"

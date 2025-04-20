@@ -25,14 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
         </activity>
         <activity android:name=".login"
             android:exported="false">
 
         </activity>
         <activity android:name=".signUp"></activity>
-        <activity android:name=".Homepage"></activity>
+        <activity android:name=".Homepage"
+            android:exported="false">
+
+        </activity>
         <activity android:name=".emission"></activity>
+        <activity android:name=".rewards"></activity>
 
     </application>
 

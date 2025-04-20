@@ -6,13 +6,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Color;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,9 +27,8 @@ import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.Field;
 import com.google.android.gms.fitness.request.OnDataPointListener;
 import com.google.android.gms.fitness.request.SensorRequest;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseAuth;
 
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 
@@ -48,40 +45,41 @@ public class Homepage extends AppCompatActivity {
     private FitnessOptions fitnessOptions;
     private OnDataPointListener stepListener;
     private OnDataPointListener distanceListener;
-    private ImageView emission,myGoal,logOut;
+    private ImageView emission,rewards,transoprt;
 
     private int totalSteps = 0;
     private float totalDistance = 0f;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footprint);
 
-        findViewById(R.id.logout).setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent logoutIntent = new Intent(this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(logoutIntent);
-            finish();
-        });
+
 
 
 
         textSteps = findViewById(R.id.textFootprintValue);
         textDistance = findViewById(R.id.textDistance);
         lineChart = findViewById(R.id.lineChart);
+        rewards = findViewById(R.id.Chart);
 
 
-        findViewById(R.id.logout).setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent logoutIntent = new Intent(this, login.class);
-            logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(logoutIntent);
-            finish();
-        });
+
+
         findViewById(R.id.reward).setOnClickListener(v -> {
-            startActivity(new Intent(this, com.example.ecobuddy.emission.class));
+            Intent intent = new Intent(this, emission.class);
+            intent.putExtra("walking_distance", totalDistance);
+            intent.putExtra("selected_day", getCurrentDay());
+            startActivity(intent);
+            Log.d("Homepage", "Sent to emission: walking_distance=" + totalDistance + " km, day=" + getCurrentDay());
+        });
+        rewards.setOnClickListener(v -> {
+            Intent intent = new Intent(Homepage.this, com.example.ecobuddy.rewards.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
         });
 
 
@@ -112,6 +110,13 @@ public class Homepage extends AppCompatActivity {
         } else {
             subscribeToStepCount();
         }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String getCurrentDay() {
+        LocalDate today = LocalDate.now();
+        String day = today.getDayOfWeek().toString(); // e.g., "MONDAY"
+        return day.substring(0, 1).toUpperCase() + day.substring(1).toLowerCase(); // e.g., "Monday"
+
     }
 
     private void subscribeToStepCount() {
