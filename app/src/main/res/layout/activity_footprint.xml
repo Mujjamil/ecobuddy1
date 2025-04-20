@@ -85,13 +85,11 @@
         android:id="@+id/plantIllustration"
         android:layout_width="411dp"
         android:layout_height="223dp"
-        android:layout_marginTop="12dp"
         android:scaleType="fitCenter"
         android:src="@drawable/women"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineChart" />
+        tools:layout_editor_absoluteY="446dp" />
 
     <LinearLayout
         android:id="@+id/bottomNav"
@@ -101,9 +99,9 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plantIllustration"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/home"
