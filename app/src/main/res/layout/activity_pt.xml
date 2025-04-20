@@ -197,7 +197,7 @@
         <LinearLayout
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="80dp"
             android:layout_marginTop="70dp"
             android:background="#2E2E2E"
             android:gravity="center"
