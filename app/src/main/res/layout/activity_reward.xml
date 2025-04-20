@@ -1,249 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <LinearLayout
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollArea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_above="@+id/bottomNav"
+        >
 
-        <!-- Eco Coins Card -->
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="50dp">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@drawable/ecocoin" />
-
-                <TextView
-                    android:id="@+id/tvEcoCoins"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="350 Eco Coins"
-                    android:textColor="#4CAF50"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/popbold"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Current Balance"
-                    android:fontFamily="@font/popreg"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Progress Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
+            <!-- Eco Coins Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@android:color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Next Reward Progress"
-                    android:textSize="16sp"
-                    android:textColor="#333"
-                    android:fontFamily="@font/popreg"/>
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="12dp">
-
-                    <ProgressBar
-                        android:id="@+id/progressBar"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="8dp"
-                        android:layout_weight="1"
-                        android:progress="700"
-                        android:max="1400"
-                        android:progressTint="#4CAF50"
-                        android:progressBackgroundTint="#E0E0E0"/>
-
-                    <TextView
-                        android:id="@+id/tvProgress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="700/1400"
-                        android:textSize="14sp"
-                        android:layout_marginStart="8dp"
-                        android:textColor="#666"/>
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnClaim"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="Claim Reward"
-                    android:backgroundTint="#4CAF50"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/popbold"
-                    android:enabled="false"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Rewards History Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:background="@android:color/white">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recent Rewards"
-                    android:fontFamily="@font/popreg"
-                    android:textSize="16sp"
-                    android:textColor="#333"/>
-
-                <!-- Reward Item 1 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="12dp"
-                    android:layout_marginTop="8dp">
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center"
+                    android:background="@android:color/white">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ecocoin"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="+10 Eco Coins"
-                        android:fontFamily="@font/popreg"
-                        android:textSize="14sp"
-                        android:layout_marginStart="16dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2023-08-01"
-                        android:textSize="12sp"
-                        android:textColor="#666"/>
-                </LinearLayout>
-
-                <!-- Reward Item 2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/ecocoin" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:id="@+id/tvEcoCoins"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="+10 Eco Coins"
-                        android:fontFamily="@font/popreg"
-                        android:textSize="14sp"
-                        android:layout_marginStart="16dp"/>
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/popbold"
+                        android:text="350 Eco Coins"
+                        android:textColor="#4CAF50"
+                        android:textSize="24sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2023-07-25"
-                        android:textSize="12sp"
-                        android:textColor="#666"/>
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/popreg"
+                        android:text="Current Balance"
+                        android:textColor="#666"
+                        android:textSize="14sp" />
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
+            <!-- Progress Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
 
-        </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@android:color/white">
 
-        <LinearLayout
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginTop="60dp"
-            android:background="#2E2E2E"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/popreg"
+                        android:text="Next Reward Progress"
+                        android:textColor="#333"
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/home"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="25dp"
-                android:src="@drawable/home_icon" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/progress"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="25dp"
-                android:src="@drawable/trophy" />
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="8dp"
+                            android:layout_weight="1"
+                            android:max="1400"
+                            android:progress="700"
+                            android:progressBackgroundTint="#E0E0E0"
+                            android:progressTint="#4CAF50" />
 
-            <ImageView
-                android:id="@+id/reward"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="25dp"
-                android:src="@drawable/reward" />
+                        <TextView
+                            android:id="@+id/tvProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="700/1400"
+                            android:textColor="#666"
+                            android:textSize="14sp" />
+                    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/publicTransport"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="25dp"
-                android:src="@drawable/transport" />
+                    <Button
+                        android:id="@+id/btnClaim"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#4CAF50"
+                        android:enabled="false"
+                        android:fontFamily="@font/popbold"
+                        android:text="Claim Reward"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
+            <!-- Rewards History Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@android:color/white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recent Rewards"
+                        android:fontFamily="@font/popreg"
+                        android:textSize="16sp"
+                        android:textColor="#333"/>
+
+                    <!-- Reward Item 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ecocoin" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+10 Eco Coins"
+                            android:fontFamily="@font/popreg"
+                            android:textSize="14sp"
+                            android:layout_marginStart="16dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2023-08-01"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+
+                    <!-- Reward Item 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ecocoin" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="+10 Eco Coins"
+                            android:fontFamily="@font/popreg"
+                            android:textSize="14sp"
+                            android:layout_marginStart="16dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2023-07-25"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:background="#2E2E2E"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:paddingHorizontal="8dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:src="@drawable/home_icon"
+            android:contentDescription="Home" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:src="@drawable/reward"
+            android:contentDescription="Reward" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:src="@drawable/transport"
+            android:contentDescription="Transport" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:src="@drawable/trophy"
+            android:contentDescription="Trophy" />
+    </LinearLayout>
+</RelativeLayout>
